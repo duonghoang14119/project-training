@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(
+    [
+        'prefix' => 'admin',
+        'name' => 'admin'
+    ],
+    function () {
+        Route::resource('products', ProductController::class);
+    }
+);
