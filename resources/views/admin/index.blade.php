@@ -178,6 +178,12 @@
             </div>
         </div>
     @endif
+    <script>
+        function closeFormSuccess() {
+            var popup = document.getElementById("popup-success");
+            popup.style.display = "none";
+        }
+    </script>
     @if(session()->has('successUpdate'))
         <div class="popup-success" id="popup-success">
 

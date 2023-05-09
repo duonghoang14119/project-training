@@ -65,11 +65,17 @@ class ProductController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show($id)
     {
-        //
+        $data = $this->productService->getById($id);
+        $recommendedProducts = $this->productService->getRecommendedProducts($id);
+        $categories = $this->productService->getAllCategory();
+        $manufacturers = $this->productService->getAllManufacturer();
+        $images = $this->productService->getProductImages($id);
+        return view('admin.show', compact('images', 'data', 'recommendedProducts', 'categories', 'manufacturers'));
+
     }
 
     /**
@@ -80,12 +86,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $router = 'products.index';
         $product = $this->productService->getById($id);
         $categories = $this->productService->getAllCategory();
         $manufacturers = $this->productService->getAllManufacturer();
         $dataImages = $this->productService->getProductImages($id);
-        return view('admin.update', compact('dataImages', 'product', 'categories', 'manufacturers', 'router'));
+        return view('admin.update', compact('dataImages', 'product', 'categories', 'manufacturers'));
 
     }
 
@@ -108,10 +113,12 @@ class ProductController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
-        //
+        $this->productService->delete($id);
+        return redirect()->route('products.index')
+            ->with('successDelete', 'Company has been deleted successfully');
     }
 }

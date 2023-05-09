@@ -164,8 +164,19 @@ class ProductService
         return $imagePath;
     }
 
+    public function removeImagesSlide($id){
+        $productImages = $this->getProductImages($id);
+        foreach ($productImages as $image) {
+            $imagePath = public_path('images/' . $image->path);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+    }
     public function delete($id)
     {
+        $this->removeImage($id);
+        $this->removeImagesSlide($id);
         return $this->repository->delete($id);
     }
 
@@ -201,6 +212,15 @@ class ProductService
         $pagination = new LengthAwarePaginator($currentPageItems, count($products), $perPage);
         $pagination->setPath(request()->url());
         return $pagination;
+    }
+
+    public function getRecommendedProducts($id){
+        $data = $this->getById($id);
+        $recommendedProducts = $this->getByCategoryId($data->category_id)->whereNotIn('id', explode(',', $id))->take(3);
+        if ($recommendedProducts->isEmpty()){
+            $recommendedProducts = $this->getByManufacturerId($data->manufacturer_id)->whereNotIn('id', explode(',', $id))->take(3);
+        }
+        return $recommendedProducts;
     }
 
     public function search($request)
