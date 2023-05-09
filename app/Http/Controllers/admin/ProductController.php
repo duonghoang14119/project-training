@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 
@@ -75,11 +76,17 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
-        //
+        $router = 'products.index';
+        $product = $this->productService->getById($id);
+        $categories = $this->productService->getAllCategory();
+        $manufacturers = $this->productService->getAllManufacturer();
+        $dataImages = $this->productService->getProductImages($id);
+        return view('admin.update', compact('dataImages', 'product', 'categories', 'manufacturers', 'router'));
+
     }
 
     /**
@@ -87,11 +94,14 @@ class ProductController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductRequest $request, $id)
     {
-        //
+        $product = $this->productService->update($id, $request);
+        return redirect()->route('products.index', $product->id)
+            ->with('successUpdate', 'Company updated successfully.')
+            ->with('product_id', $product->id);
     }
 
     /**
