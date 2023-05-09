@@ -7,6 +7,7 @@ use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -27,14 +28,15 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index(Request $request)
     {
+        $user = Auth::user();
         $pagination = $this->productService->showProducts($request);
         $categories = $this->productService->getAllCategory();
         $manufacturers = $this->productService->getAllManufacturer();
-        return view('admin.index', compact('pagination', 'categories', 'manufacturers'));
+        return view('admin.index', compact('user', 'pagination', 'categories', 'manufacturers'));
     }
 
     /**
@@ -91,7 +93,6 @@ class ProductController extends Controller
         $manufacturers = $this->productService->getAllManufacturer();
         $dataImages = $this->productService->getProductImages($id);
         return view('admin.update', compact('dataImages', 'product', 'categories', 'manufacturers'));
-
     }
 
     /**
