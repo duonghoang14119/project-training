@@ -94,5 +94,34 @@ class ProductService
     {
         return $this->repository->getByCategoryId($categoryId);
     }
+    public function showProducts(Request $request){
+
+        // kiểm tra các giá trị trả về của filter và search để lọc sản phẩm
+        $querySearch = $request->input('query');
+        $filterCategory = $request->input('category_id');
+        $filterManufacturer = $request->input('manufacturer_id');
+        $products = $this->getAll();
+        if ($querySearch){
+            $products = $this->search($querySearch);
+        }
+        if ($filterCategory) {
+            $products = $this->getByCategoryId($filterCategory);
+        }
+        if ($filterManufacturer) {
+            $products = $this->getByManufacturerId($filterManufacturer);
+        }
+
+        $perPage = 12;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentPageItems = $products->slice(($currentPage - 1) * $perPage, $perPage);
+        $pagination = new LengthAwarePaginator($currentPageItems, count($products), $perPage);
+        $pagination->setPath(request()->url());
+        return $pagination;
+    }
+
+    public function search($request)
+    {
+        return $this->repository->search($request);
+    }
 
 }

@@ -16,14 +16,24 @@ class ProductController extends Controller
         $this->productService = $productService;
     }
 
+    public function start()
+    {
+        $categories = $this->productService->getAllCategory();
+        $manufacturers = $this->productService->getAllManufacturer();
+        return view('admin.start', compact('categories', 'manufacturers'));
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        dd(1111);
+        $pagination = $this->productService->showProducts($request);
+        $categories = $this->productService->getAllCategory();
+        $manufacturers = $this->productService->getAllManufacturer();
+        return view('admin.index', compact('pagination', 'categories', 'manufacturers'));
     }
 
     /**

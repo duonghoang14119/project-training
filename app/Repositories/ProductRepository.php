@@ -52,4 +52,13 @@ class ProductRepository implements ProductRepositoryInterface
         return $this->model->where('category_id', $categoryId)->get();
     }
 
+    public function search($request)
+    {
+        $query = $request;
+
+        $products = $this->model->where('name', 'LIKE', "%$query%")
+            ->orWhere('description', 'LIKE', "%$query%")
+            ->get();
+        return $products;
+    }
 }
