@@ -1,0 +1,293 @@
+.header {
+    background: #00ADE8;
+    /*width: 100%;*/
+    height: 64px;
+}
+
+/*css của file index*/
+
+.home {
+    display: flex;
+}
+
+.content {
+    float: right;
+    background-color: #E5E5E5;
+    width: 1250px;
+    height: 780px;
+}
+
+.body-home {
+    overflow: hidden;
+}
+.homepage-content {
+    overflow: scroll;
+
+    background-color: #ffffff;
+    width: 1000px;
+    max-height: 470px;
+    margin-top: 100px;
+    margin-left: 80px;
+    border-radius: 10px;
+    padding: 46px;
+}
+
+.homepage-content-item{
+    display: flex;
+    flex-wrap: wrap;
+}
+.homepage-content::-webkit-scrollbar {
+    width: 0 !important;
+    display: none;
+}
+.pagination_manager{
+    text-align: center;
+}
+
+
+
+/*.pagination-wrapper {*/
+/*    position: fixed;*/
+/*    left: 0;*/
+/*    bottom: 0;*/
+/*    width: 100%;*/
+/*    background-color: #fff;*/
+/*    padding: 10px 0;*/
+/*    border-top: 1px solid #ddd;*/
+/*    text-align: center;*/
+/*}*/
+
+
+.add-product {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    border-radius: 6px;
+    position: absolute;
+    text-align: center;
+    color: #00CCFF;
+    border: 2px solid #00CCFF;
+    height: 25px;
+    width: 160px;
+    left: 363px;
+    top: 102px;
+    /*border-radius: nullpx;*/
+
+}
+
+#product-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.button-edit-product {
+    justify-content: center;
+    display: flex;
+}
+
+.btn-update {
+    width: 94.29px;
+    height: 31px;
+    background: #6ECB63;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.35px;
+    justify-content: center;
+
+    margin-right: 20px;
+}
+
+.btn-delete {
+    width: 94.29px;
+    height: 31px;
+    background: #FF4D4D;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.35px;
+    justify-content: center;
+}
+
+/*kết thúc*/
+
+
+a {
+    text-decoration: none;
+}
+
+.header-header {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 180px;
+    display: flex;
+    align-items: center;
+    max-height: 65px;
+    margin-left: 80px;
+    overflow: hidden;
+
+}
+
+.test {
+    /*font-family: 'Petrona';*/
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 54px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.san-pham {
+    margin-left: 120px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 88.69%;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+
+}
+
+select {
+    padding: 5px;
+    border: none;
+}
+
+/* Thiết lập style cho option */
+option {
+    padding: 5px;
+}
+
+/* Thiết lập style cho dropdown khi mở */
+select:focus {
+    outline: none;
+    background-color: #f2f2f2;
+}
+
+/* Thiết lập style cho dropdown list */
+select option:checked {
+    background-color: #ddd;
+}
+
+/* Thiết lập style cho dropdown list khi mở */
+select option {
+    display: block;
+    padding: 5px;
+    margin: 0;
+    border: none;
+    width: 100%;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.vertical-menu {
+    width: 200px;
+}
+
+.vertical-menu a {
+    background-color: #eee;
+    color: black;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc;
+}
+
+.vertical-menu .sub-menu {
+    display: none;
+}
+
+.vertical-menu .active .sub-menu {
+    display: block;
+}
+
+.navbar-nav {
+    flex-direction: column;
+}
+
+.navbar-nav > .nav-item {
+    position: relative;
+}
+
+.navbar-nav > .nav-item > .nav-sub {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+}
+
+.navbar-nav > .nav-item.active > .nav-sub {
+    display: block;
+}
+
+.menu {
+    width: 200px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    border-bottom: 1px solid #ccc;
+}
+
+.menu li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.menu li a:hover {
+    background-color: #ccc;
+}
+
+.menu .submenu ul {
+    display: none;
+}
+
+.menu .submenu:hover ul {
+    display: block;
+    position: absolute;
+    left: 200px;
+    top: 0;
+    width: 200px;
+    z-index: 1;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.logout-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 1100px;
+}

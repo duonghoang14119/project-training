@@ -1,0 +1,130 @@
+.update-product-page{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+    width: 1000px;
+    height: auto;
+    margin-top: 40px;
+    margin-left: 80px;
+    border-radius: 10px;
+    padding: 46px;
+}
+.update-form-group{
+    width: 425px;
+    height: 40px;
+    border: 1px solid #BCBEC6;
+    border-radius: 6px;
+}
+.form-update {
+    /*width: 50%;*/
+    float: left;
+}
+
+.img-update {
+    width: 50%;
+    float: right;
+}
+.button-update{
+    margin-left: 40px;
+    display: flex;
+}
+.btn-update-submit{
+    margin-left: 30px;
+    width: 164px;
+    height: 44px;
+    background: #00CCFF;
+    border-radius: 4px;
+}
+.btn-update-cancel{
+    width: 164px;
+    height: 44px;
+    line-height: 44px;
+    border: 1px solid #00CCFF;
+    border-radius: 4px;
+    display: block;
+    text-align: center;
+}
+
+.img-update-above {
+    position: relative;
+    width: 420px;
+    height: 260px;
+}
+
+.btn-hide .btn-update-img{
+    width: 95px;
+    height: 31px;
+    margin-bottom: 16px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+    color: white;
+}
+.btn-hide .btn-remove-img{
+    width: 95px;
+    height: 31px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+    color: white;
+}
+
+.img-extra {
+    /*padding-left: 20px;*/
+    position: relative;
+}
+
+.btn-hide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+
+.img-update-above:hover .btn-hide {
+    opacity: 1;
+}
+
+.btn-update-img,
+.btn-remove-img {
+    display: block;
+    margin: 0 auto;
+}
+.btn-update-img-under{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.imgElement{
+    width: 195px;
+    height: 131px;
+}
+.slide-item-img {
+    padding-right: 15px;
+    position: relative;
+}
+.update_delete{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    /*background: #ffffff;*/
+}
+.slide-item-img:hover .update_delete {
+    opacity: 1;
+}
+.btn_update_delete {
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+}
+.error-message{
+    color: red;
+}

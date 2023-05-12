@@ -1,0 +1,27 @@
+.search-box{
+    float: right;
+    position: relative;
+    width: 380px;
+    padding-top: 38px;
+    padding-right: 165px;
+
+}
+.search-box input{
+    padding: 12px 22px 12px 70px;
+    width: 100%;
+}
+.search-form{
+    position: relative;
+}
+.search-btn{
+    position: absolute;
+    top: 60%;
+    left: 9%;
+    transform: translate(-50%, -50%);
+}
+.search-btn button {
+    background: transparent;
+    border: none;
+}
+
+
