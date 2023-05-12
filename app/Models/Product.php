@@ -33,7 +33,6 @@ class Product extends Model
     protected static function boot()
     {
         parent::boot();
-
         static::deleting(function ($product) {
             $product->images()->delete();
         });

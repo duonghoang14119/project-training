@@ -38,7 +38,7 @@
                     <div>
                         <img style="width: 100%; height: 100%" src="{{ asset('images/'. $data->image_path) }}" alt="" class="img-product">
                     </div>
-                        @foreach ($images as $image)
+                        @foreach ($data->images as $image)
                             <div>
                                 <img style="width: 100%; height: 100%" src="{{ asset('images/'. $image->path) }}" alt="" class="img-product">
                             </div>

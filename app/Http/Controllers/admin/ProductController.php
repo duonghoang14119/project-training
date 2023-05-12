@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     protected $productService;
 
-    public function __construct( ProductService $productService )
+    public function __construct(ProductService $productService)
     {
         $this->productService = $productService;
     }
@@ -22,7 +22,10 @@ class ProductController extends Controller
     {
         $categories = $this->productService->getAllCategory();
         $manufacturers = $this->productService->getAllManufacturer();
-        return view('admin.start', compact('categories', 'manufacturers'));
+        return view('admin.start', compact(
+            'categories',
+            'manufacturers',
+        ));
     }
 
     /**
@@ -36,7 +39,12 @@ class ProductController extends Controller
         $pagination = $this->productService->showProducts($request);
         $categories = $this->productService->getAllCategory();
         $manufacturers = $this->productService->getAllManufacturer();
-        return view('admin.index', compact('user', 'pagination', 'categories', 'manufacturers'));
+        return view('admin.index', compact(
+            'user',
+            'pagination',
+            'categories',
+            'manufacturers',
+        ));
     }
 
     /**
@@ -48,13 +56,16 @@ class ProductController extends Controller
     {
         $categories = $this->productService->getAllCategory();
         $manufacturers = $this->productService->getAllManufacturer();
-        return view('admin.add', compact('categories', 'manufacturers'));
+        return view('admin.add', compact(
+            'categories',
+            'manufacturers',
+        ));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreateProductRequest $request)
@@ -66,7 +77,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show($id)
@@ -75,15 +86,19 @@ class ProductController extends Controller
         $recommendedProducts = $this->productService->getRecommendedProducts($id);
         $categories = $this->productService->getAllCategory();
         $manufacturers = $this->productService->getAllManufacturer();
-        $images = $this->productService->getProductImages($id);
-        return view('admin.show', compact('images', 'data', 'recommendedProducts', 'categories', 'manufacturers'));
+        return view('admin.show', compact(
+            'data',
+            'recommendedProducts',
+            'categories',
+            'manufacturers',
+        ));
 
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
@@ -92,28 +107,35 @@ class ProductController extends Controller
         $categories = $this->productService->getAllCategory();
         $manufacturers = $this->productService->getAllManufacturer();
         $dataImages = $this->productService->getProductImages($id);
-        return view('admin.update', compact('dataImages', 'product', 'categories', 'manufacturers'));
+        return view('admin.update', compact(
+            'dataImages',
+            'product',
+            'categories',
+            'manufacturers',
+        ));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateProductRequest $request, $id)
     {
         $product = $this->productService->update($id, $request);
         return redirect()->route('products.index', $product->id)
-            ->with('successUpdate', 'Company updated successfully.')
-            ->with('product_id', $product->id);
+            ->with([
+                'successUpdate' => 'Company updated successfully.',
+                'product_id' => $product->id,
+            ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)

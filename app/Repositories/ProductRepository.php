@@ -3,43 +3,18 @@
 namespace App\Repositories;
 
 use App\Models\Product;
+use App\Repositories\Interface\ProductRepositoryInterface;
 
-class ProductRepository implements ProductRepositoryInterface
+class ProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
-    protected $model;
-
     public function __construct(Product $model)
     {
-        $this->model = $model;
+        parent::__construct($model);
     }
 
     public function getAll()
     {
         return $this->model->orderBy('created_at', 'desc')->get();
-    }
-
-    public function getById($id)
-    {
-        return $this->model->find($id);
-    }
-
-    public function create($data)
-    {
-        return $this->model->create($data);
-    }
-
-    public function update($id, $data)
-    {
-        $model = $this->model->findOrFail($id);
-        $model->update($data);
-        return $model;
-    }
-
-    public function delete($id)
-    {
-        $product  = $this->model->findOrFail($id);
-        $product->images()->delete();
-        return $product->delete();
     }
 
     public function getByManufacturerId($manufacturerId)
@@ -55,7 +30,6 @@ class ProductRepository implements ProductRepositoryInterface
     public function search($request)
     {
         $query = $request;
-
         $products = $this->model->where('name', 'LIKE', "%$query%")
             ->orWhere('description', 'LIKE', "%$query%")
             ->get();

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Interface;
 
 interface ProductRepositoryInterface
 {
     public function getAll();
 
-    public function getById($id);
+    public function find($id);
 
     public function create(array $data);
 
